@@ -10,11 +10,12 @@
         android:id="@+id/start_recording"
         android:layout_width="250dp"
         android:layout_height="50dp"
-        android:layout_marginTop="61dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="23dp"
         android:gravity="center"
         android:text="Start Recording"
-        android:textSize="24sp"
-        android:layout_centerHorizontal="true" />
+        android:textSize="24sp" />
 
     <ListView
         android:id="@+id/records_view"
@@ -40,5 +41,31 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="22dp"
         android:text="Record" />
+
+    <RadioGroup
+        android:id="@+id/record_rg"
+        android:layout_height="50dp"
+        android:layout_width="320dp"
+        android:orientation='horizontal'
+        android:gravity="center"
+        android:checkedButton="@+id/Stationary"
+        android:layout_below="@+id/start_recording"
+        android:layout_centerHorizontal="true" >
+
+    <RadioButton
+        android:id="@+id/Stationary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:foregroundGravity="center"
+        android:text="Stationary" />
+    <RadioButton
+        android:id="@+id/Walking"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:foregroundGravity="center"
+        android:text="Walking" />
+    </RadioGroup>
 
 </RelativeLayout>
