@@ -1,0 +1,62 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.lkh.a173050061_record_data.MainActivity$PlaceholderFragment">
+
+    <!--<TextView-->
+        <!--android:id="@+id/section_label"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginBottom="@dimen/activity_vertical_margin"-->
+        <!--android:layout_marginEnd="@dimen/activity_horizontal_margin"-->
+        <!--android:layout_marginStart="@dimen/activity_horizontal_margin"-->
+        <!--android:layout_marginTop="@dimen/activity_vertical_margin"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="@+id/constraintLayout"-->
+        <!--tools:layout_constraintLeft_creator="1"-->
+        <!--tools:layout_constraintTop_creator="1" />-->
+    <TextView
+        android:id="@+id/Accelerometer"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="31dp"
+        android:gravity="left"
+        android:text="Accelerometer"
+        android:textSize="24sp"
+        android:layout_below="@+id/appBarLayout"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/GPS"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:text="GPS"
+        android:textSize="24sp"
+        android:layout_marginTop="21dp"
+        android:layout_below="@+id/Accelerometer"
+        android:layout_alignStart="@+id/Accelerometer" />
+
+    <CheckBox
+        android:id="@+id/check_acc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_alignTop="@+id/Accelerometer"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="27dp" />
+
+    <CheckBox
+        android:id="@+id/check_gps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_alignBaseline="@+id/GPS"
+        android:layout_alignBottom="@+id/GPS"
+        android:layout_alignStart="@+id/check_acc" />
+
+</RelativeLayout>
