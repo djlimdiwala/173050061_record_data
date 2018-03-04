@@ -6,17 +6,10 @@ package com.example.lkh.a173050061_record_data;
  * Created by DJL on 3/4/2018.
  */
 
-import android.content.Context;
-import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.content.pm.ActivityInfo;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,16 +20,7 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Switch;
-import android.hardware.SensorEventListener;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.FileInputStream;
-import java.io.OutputStreamWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -47,15 +31,9 @@ public class fragment_record extends Fragment {
 
 
     SharedPreferences preferences;
-    private SensorManager senSensorManager;
-    private Sensor senAccelerometer;
-    private Sensor senGPS;
-    private long lastUpdate = 0;
-    private float last_x, last_y, last_z;
-    private float longitude, latitude;
     private RadioGroup rrg;
     private RadioButton rbt;
-    private static final int SHAKE_THRESHOLD = 600;
+
 
 
     @Override
@@ -110,7 +88,7 @@ public class fragment_record extends Fragment {
 //                }
 
 
-                Intent intent = new Intent(getActivity(),accelerometer.class);
+                Intent intent = new Intent(getActivity(),gps_location.class);
                 if (isChecked)
                 {
                     rrg = (RadioGroup) rootView.findViewById(R.id.record_rg);
@@ -127,14 +105,14 @@ public class fragment_record extends Fragment {
                     {
                         gc = "Male";
                     }
-
-                    intent.putExtra("first",preferences.getString("first_check",""));
-                    intent.putExtra("last",preferences.getString("last_check",""));
-                    intent.putExtra("mobile",preferences.getString("mobile_check",""));
-                    intent.putExtra("email",preferences.getString("mail_check",""));
-                    intent.putExtra("gend",gc);
-                    intent.putExtra("age",preferences.getString("age_check",""));
-                    intent.putExtra("label",rbt.getText().toString());
+//
+//                    intent.putExtra("first",preferences.getString("first_check",""));
+//                    intent.putExtra("last",preferences.getString("last_check",""));
+//                    intent.putExtra("mobile",preferences.getString("mobile_check",""));
+//                    intent.putExtra("email",preferences.getString("mail_check",""));
+//                    intent.putExtra("gend",gc);
+//                    intent.putExtra("age",preferences.getString("age_check",""));
+//                    intent.putExtra("label",rbt.getText().toString());
 
                     getActivity().startService(intent);
 
