@@ -115,4 +115,6 @@ public class MainActivity extends AppCompatActivity {
             return null;
         }
     }
+    @Override
+    public void onBackPressed() { }
 }
