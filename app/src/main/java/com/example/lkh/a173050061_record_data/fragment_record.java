@@ -71,66 +71,62 @@ public class fragment_record extends Fragment {
 
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy-hh-mm-ss");
                 String format = simpleDateFormat.format(new Date());
-//                String csv = android.os.Environment.getExternalStorageDirectory().getAbsolutePath();
-//                String path = csv + File.separator + "sample.csv";
-//                String str = "first name,last name,mobile, email,gender,age";
-//
-//                Log.e("path",path);
-//                try {
-//                    FileOutputStream stream = new FileOutputStream(path);
-//                    stream.write(str.getBytes());
-//                    stream.close();
-//
-//                } catch (FileNotFoundException e) {
-//                    e.printStackTrace();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
 
 
-                Intent intent = new Intent(getActivity(),gps_location.class);
-                if (isChecked)
-                {
-                    rrg = (RadioGroup) rootView.findViewById(R.id.record_rg);
-                    int selectedId = rrg.getCheckedRadioButtonId();
-                    rbt = (RadioButton) rootView.findViewById(selectedId);
-                    Log.e("radio", rbt.getText().toString());
-                    int g = preferences.getInt("gender_check",-1);
-                    String gc;
-                    if (g == 1)
-                    {
-                        gc = "Female";
-                    }
-                    else
-                    {
-                        gc = "Male";
-                    }
-//
-//                    intent.putExtra("first",preferences.getString("first_check",""));
-//                    intent.putExtra("last",preferences.getString("last_check",""));
-//                    intent.putExtra("mobile",preferences.getString("mobile_check",""));
-//                    intent.putExtra("email",preferences.getString("mail_check",""));
-//                    intent.putExtra("gend",gc);
-//                    intent.putExtra("age",preferences.getString("age_check",""));
-//                    intent.putExtra("label",rbt.getText().toString());
+                Intent intent = new Intent(getActivity(),accelerometer.class);
+                if (isChecked) {
 
-                    getActivity().startService(intent);
+                    Log.e("kahaa hai", "checked main hu");
+                    int gps_c = preferences.getInt("gps_check", -1);
+                    int acc_c = preferences.getInt("acc_check", -1);
 
-                    if (recordings_list.size() >= 5)
-                    {
-                        recordings_list.add(0,format);
-                        recordings_list.remove(recordings_list.size()-1);
+                    if (gps_c == 0 && acc_c == 0) {
+
                     }
                     else {
-                        recordings_list.add(0,format);
+
+                        rrg = (RadioGroup) rootView.findViewById(R.id.record_rg);
+                        int selectedId = rrg.getCheckedRadioButtonId();
+                        rbt = (RadioButton) rootView.findViewById(selectedId);
+                        Log.e("radio", rbt.getText().toString());
+                        int g = preferences.getInt("gender_check", -1);
+                        String gc;
+                        if (g == 1) {
+                            gc = "Female";
+                        } else {
+                            gc = "Male";
+                        }
+
+                        intent.putExtra("first", preferences.getString("First_name", ""));
+                        intent.putExtra("last", preferences.getString("Last_name", ""));
+                        intent.putExtra("mobile", preferences.getString("Mobile_no", ""));
+                        intent.putExtra("email", preferences.getString("E_mail", ""));
+                        intent.putExtra("gend", preferences.getString("gen",""));
+                        intent.putExtra("age", preferences.getString("age_person", ""));
+                        intent.putExtra("label", rbt.getText().toString());
+                        intent.putExtra("acc_ch",acc_c);
+                        intent.putExtra("gps_ch",gps_c);
+
+                        getActivity().startService(intent);
+
+                        if (recordings_list.size() >= 5) {
+                            recordings_list.add(0, format);
+                            recordings_list.remove(recordings_list.size() - 1);
+                        } else {
+                            recordings_list.add(0, format);
                     }
+                }
                 }
                 else
                 {
+                    Log.e("kahaa hai", "UNchecked main hu");
                     getActivity().stopService(intent);
                     arrayAdapter.notifyDataSetChanged();
 
                 }
+
+
+
             }
         });
 

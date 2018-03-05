@@ -50,7 +50,7 @@ public class fragment_login extends Fragment{
 
         if(!preferences.contains("first_check")) {
 
-            editor.putString("first_check"," ");
+            editor.putString("first_check","");
         }
         else
         {
@@ -60,7 +60,7 @@ public class fragment_login extends Fragment{
 
         if(!preferences.contains("last_check")) {
 
-            editor.putString("last_check"," ");
+            editor.putString("last_check","");
         }
         else
         {
@@ -71,7 +71,7 @@ public class fragment_login extends Fragment{
 
         if(!preferences.contains("mail_check")) {
 
-            editor.putString("mail_check"," ");
+            editor.putString("mail_check","");
         }
         else
         {
@@ -82,7 +82,7 @@ public class fragment_login extends Fragment{
 
         if(!preferences.contains("mobile_check")) {
 
-            editor.putString("mobile_check"," ");
+            editor.putString("mobile_check","");
         }
         else
         {
@@ -93,7 +93,7 @@ public class fragment_login extends Fragment{
 
         if(!preferences.contains("age_check")) {
 
-            editor.putString("age_check"," ");
+            editor.putString("age_check","");
         }
         else
         {
@@ -261,11 +261,26 @@ public class fragment_login extends Fragment{
 
                 if (flag == 1)
                 {
+                    RadioGroup rrg = (RadioGroup) rootView.findViewById(R.id.radioGroup);
+                    int selectedId = rrg.getCheckedRadioButtonId();
+                    RadioButton rbt = (RadioButton) rootView.findViewById(selectedId);
+
+
+
+                    first.setText("");
+                    last.setText("");
+                    email.setText("");
+                    mobile_no.setText("");
+                    agee.setText("");
+
+
+
                     editor.putString("First_name",first.getText().toString());
                     editor.putString("Last_name",last.getText().toString());
                     editor.putString("E_mail",email.getText().toString());
                     editor.putString("Mobile_no",mobile_no.getText().toString());
                     editor.putString("age_person",agee.getText().toString());
+                    editor.putString("gen", rbt.getText().toString());
                     editor.apply();
                 }
 
