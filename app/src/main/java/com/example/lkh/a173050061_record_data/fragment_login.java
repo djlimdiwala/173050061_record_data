@@ -17,7 +17,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class fragment_login extends Fragment{
@@ -55,7 +54,6 @@ public class fragment_login extends Fragment{
         editor.putString("Mobile_no","");
         editor.putString("age_person","");
         editor.putString("gen", "");
-        editor.putInt("incomplete",0);
         editor.apply();
         if(!preferences.contains("first_check")) {
 
@@ -127,7 +125,6 @@ public class fragment_login extends Fragment{
 
             public void afterTextChanged(Editable s) {
 
-                // you can call or do what you want with your EditText here
                 editor.putString("first_check",s.toString());
                 editor.apply();
 
@@ -160,7 +157,6 @@ public class fragment_login extends Fragment{
 
             public void afterTextChanged(Editable s) {
 
-                // you can call or do what you want with your EditText here
                 editor.putString("mail_check",s.toString());
                 editor.apply();
 
@@ -178,7 +174,6 @@ public class fragment_login extends Fragment{
 
             public void afterTextChanged(Editable s) {
 
-                // you can call or do what you want with your EditText here
                 editor.putString("mobile_check",s.toString());
                 editor.apply();
 
@@ -195,7 +190,6 @@ public class fragment_login extends Fragment{
 
             public void afterTextChanged(Editable s) {
 
-                // you can call or do what you want with your EditText here
                 editor.putString("age_check",s.toString());
                 editor.apply();
 
@@ -285,7 +279,6 @@ public class fragment_login extends Fragment{
                     int selectedId = rrg.getCheckedRadioButtonId();
                     RadioButton rbt = (RadioButton) rootView.findViewById(selectedId);
 
-
                     editor.putString("First_name",first.getText().toString());
                     editor.putString("Last_name",last.getText().toString());
                     editor.putString("E_mail",email.getText().toString());
@@ -295,14 +288,13 @@ public class fragment_login extends Fragment{
                     editor.putInt("incomplete",1);
                     editor.apply();
 
+                    Toast.makeText(getContext(), "Successfully submitted...", Toast.LENGTH_LONG).show();
+
                     first.setText("");
                     last.setText("");
                     email.setText("");
                     mobile_no.setText("");
                     agee.setText("");
-
-
-
 
                 }
 

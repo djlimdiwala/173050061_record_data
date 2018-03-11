@@ -56,8 +56,7 @@ public class accelerometer extends Service implements SensorEventListener, Locat
 
 
 
-//    String csv = android.os.Environment.getExternalStorageDirectory().getAbsolutePath();
-//    Stri csv = getAc
+
     private String path;
 
 
@@ -198,7 +197,6 @@ public class accelerometer extends Service implements SensorEventListener, Locat
             }
 
             String read = String.valueOf(last_x) + "  " + String.valueOf(last_y) + "  " + String.valueOf(last_z);
-//            Log.e("recording",read);
         }
 
 
@@ -207,7 +205,6 @@ public class accelerometer extends Service implements SensorEventListener, Locat
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.e("status","closed");
         stopSelf();
     }
 
@@ -236,7 +233,6 @@ public class accelerometer extends Service implements SensorEventListener, Locat
             e.printStackTrace();
         }
 
-        Log.e("coordinates", location.getLongitude() + "  " + location.getLatitude());
     }
 
     @Override

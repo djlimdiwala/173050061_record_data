@@ -27,10 +27,6 @@
              >
         </service>
 
-        <service
-            android:name=".gps_location"
-            >
-        </service>
     </application>
 
 </manifest>

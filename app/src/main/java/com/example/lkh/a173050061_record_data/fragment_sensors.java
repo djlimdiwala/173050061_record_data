@@ -29,10 +29,6 @@ public class fragment_sensors extends Fragment {
 
     SharedPreferences preferences;
 
-
-//    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-//
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -103,15 +99,13 @@ public class fragment_sensors extends Fragment {
 
                                                @Override
                                                public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
-//
+
                                                    if (isChecked)
                                                    {
-                                                       Log.e("acc",String.valueOf(isChecked));
                                                        editor.putInt("acc_check",1);
                                                    }
                                                    else
                                                    {
-                                                       Log.e("acc",String.valueOf(isChecked));
                                                        editor.putInt("acc_check",0);
                                                    }
                                                    editor.apply();
@@ -126,12 +120,10 @@ public class fragment_sensors extends Fragment {
 
                                                      if (isChecked)
                                                      {
-                                                         Log.e("gps",String.valueOf(isChecked));
                                                          editor.putInt("gps_check",1);
                                                      }
                                                      else
                                                      {
-                                                         Log.e("gps",String.valueOf(isChecked));
                                                          editor.putInt("gps_check",0);
                                                      }
                                                      editor.apply();

@@ -78,7 +78,8 @@ public class fragment_record extends Fragment {
                     if ( preferences.getInt("incomplete",0) == 0)
                     {
                         check_switch.setChecked(false);
-//                        Toast.makeText(fragment_record.this, "Select atleast one sensor..." , Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), "Incomplete user information..",
+                                Toast.LENGTH_LONG).show();
                     }
                     else {
 
@@ -90,7 +91,7 @@ public class fragment_record extends Fragment {
                         if (gps_c == 0 && acc_c == 0) {
 
                             check_switch.setChecked(false);
-//                            Toast.makeText(fragment_record.this, "Select atleast one sensor...", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(), "Select atleast one sensor...", Toast.LENGTH_LONG).show();
 
                         } else {
 
@@ -131,7 +132,6 @@ public class fragment_record extends Fragment {
                 }
                 else
                 {
-                    Log.e("kahaa hai", "UNchecked main hu");
                     getActivity().stopService(intent);
                     arrayAdapter.notifyDataSetChanged();
 
