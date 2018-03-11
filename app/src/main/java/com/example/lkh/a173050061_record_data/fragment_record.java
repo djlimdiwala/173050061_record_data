@@ -47,6 +47,8 @@ public class fragment_record extends Fragment {
         final SharedPreferences.Editor editor = preferences.edit();
 
 
+        String ppp = getActivity().getApplicationContext().getExternalFilesDir(null).toString();
+        Log.e("path",ppp);
 
 
         ListView records_view = (ListView) rootView.findViewById(R.id.records_view);

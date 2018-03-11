@@ -56,6 +56,7 @@ public class accelerometer extends Service implements SensorEventListener, Locat
 
 
     String csv = android.os.Environment.getExternalStorageDirectory().getAbsolutePath();
+//    Stri csv = getAc
     String path = csv + File.separator + "sample.csv";
 
 
@@ -75,6 +76,8 @@ public class accelerometer extends Service implements SensorEventListener, Locat
                 Log.e("status","started");
                 label = intent.getExtras().get("label").toString();
                 String str = intent.getExtras().get("first") + "," + intent.getExtras().get("last") + "," + intent.getExtras().get("mobile") + "," + intent.getExtras().get("email") + "," + intent.getExtras().get("gend") + "," + intent.getExtras().get("age") + "\n";
+
+
 
                 int ac = (int) intent.getExtras().get("acc_ch");
                 int gp = (int) intent.getExtras().get("gps_ch");
