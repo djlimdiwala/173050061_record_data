@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,6 +47,16 @@ public class fragment_login extends Fragment{
 
         final SharedPreferences.Editor editor = preferences.edit();
 
+
+
+        editor.putString("First_name","");
+        editor.putString("Last_name","");
+        editor.putString("E_mail","");
+        editor.putString("Mobile_no","");
+        editor.putString("age_person","");
+        editor.putString("gen", "");
+        editor.putInt("incomplete",0);
+        editor.apply();
         if(!preferences.contains("first_check")) {
 
             editor.putString("first_check","");
@@ -135,7 +144,6 @@ public class fragment_login extends Fragment{
 
             public void afterTextChanged(Editable s) {
 
-                // you can call or do what you want with your EditText here
                 editor.putString("last_check",s.toString());
                 editor.apply();
 
@@ -223,24 +231,32 @@ public class fragment_login extends Fragment{
                 if (first.getText().toString().length() == 0)
                 {
                     flag = 0;
+                    editor.putInt("incomplete",0);
+                    editor.apply();
                     first.setError("Enter First Name");
                     first.requestFocus();
                 }
                 else if (last.getText().toString().length() == 0)
                 {
                     flag = 0;
+                    editor.putInt("incomplete",0);
+                    editor.apply();
                     last.setError("Enter Last Name");
                     last.requestFocus();
                 }
                 else if (!mobile_validate(mobile_no.getText().toString()))
                 {
                     flag = 0;
+                    editor.putInt("incomplete",0);
+                    editor.apply();
                     mobile_no.setError("Invalid mobile");
                     mobile_no.requestFocus();
                 }
                 else if (!email_validate(email.getText().toString()))
                 {
                     flag = 0;
+                    editor.putInt("incomplete",0);
+                    editor.apply();
                     email.setError("Invalid Email");
                     email.requestFocus();
                 }
@@ -248,12 +264,16 @@ public class fragment_login extends Fragment{
                 else if (agee.getText().toString().length() == 0)
                 {
                     flag = 0;
+                    editor.putInt("incomplete",0);
+                    editor.apply();
                     agee.setError("Enter Age");
                     agee.requestFocus();
                 }
                 else if (!age_validate(agee.getText().toString()))
                 {
                     flag = 0;
+                    editor.putInt("incomplete",0);
+                    editor.apply();
                     agee.setError("Invalid Age");
                     agee.requestFocus();
                 }
@@ -266,6 +286,14 @@ public class fragment_login extends Fragment{
                     RadioButton rbt = (RadioButton) rootView.findViewById(selectedId);
 
 
+                    editor.putString("First_name",first.getText().toString());
+                    editor.putString("Last_name",last.getText().toString());
+                    editor.putString("E_mail",email.getText().toString());
+                    editor.putString("Mobile_no",mobile_no.getText().toString());
+                    editor.putString("age_person",agee.getText().toString());
+                    editor.putString("gen", rbt.getText().toString());
+                    editor.putInt("incomplete",1);
+                    editor.apply();
 
                     first.setText("");
                     last.setText("");
@@ -275,13 +303,7 @@ public class fragment_login extends Fragment{
 
 
 
-                    editor.putString("First_name",first.getText().toString());
-                    editor.putString("Last_name",last.getText().toString());
-                    editor.putString("E_mail",email.getText().toString());
-                    editor.putString("Mobile_no",mobile_no.getText().toString());
-                    editor.putString("age_person",agee.getText().toString());
-                    editor.putString("gen", rbt.getText().toString());
-                    editor.apply();
+
                 }
 
 

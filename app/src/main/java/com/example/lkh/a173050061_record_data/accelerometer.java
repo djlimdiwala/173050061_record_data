@@ -17,6 +17,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.content.SharedPreferences;
 import android.os.IBinder;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
@@ -55,9 +56,9 @@ public class accelerometer extends Service implements SensorEventListener, Locat
 
 
 
-    String csv = android.os.Environment.getExternalStorageDirectory().getAbsolutePath();
+//    String csv = android.os.Environment.getExternalStorageDirectory().getAbsolutePath();
 //    Stri csv = getAc
-    String path = csv + File.separator + "sample.csv";
+    private String path;
 
 
     @Nullable
@@ -75,11 +76,16 @@ public class accelerometer extends Service implements SensorEventListener, Locat
 
                 Log.e("status","started");
                 label = intent.getExtras().get("label").toString();
-                String str = intent.getExtras().get("first") + "," + intent.getExtras().get("last") + "," + intent.getExtras().get("mobile") + "," + intent.getExtras().get("email") + "," + intent.getExtras().get("gend") + "," + intent.getExtras().get("age") + "\n";
+                String str = intent.getExtras().get("first") + "," +intent.getExtras().get("last") + "," + intent.getExtras().get("mobile") + "," + intent.getExtras().get("email") + "," + intent.getExtras().get("gend") + "," + intent.getExtras().get("age") + "\n";
+//
+                path = intent.getExtras().get("path").toString() + File.separator + intent.getExtras().get("first") + "_" + intent.getExtras().get("time") + ".csv";
+
+                Log.e("path2", path);
 
 
 
-                int ac = (int) intent.getExtras().get("acc_ch");
+
+        int ac = (int) intent.getExtras().get("acc_ch");
                 int gp = (int) intent.getExtras().get("gps_ch");
 
                 Log.e("path",path);

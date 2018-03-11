@@ -20,6 +20,7 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -47,23 +48,19 @@ public class fragment_record extends Fragment {
         final SharedPreferences.Editor editor = preferences.edit();
 
 
-        String ppp = getActivity().getApplicationContext().getExternalFilesDir(null).toString();
+        final String ppp = getActivity().getApplicationContext().getExternalFilesDir(null).toString();
         Log.e("path",ppp);
 
 
         ListView records_view = (ListView) rootView.findViewById(R.id.records_view);
 
         String[] recordings = new String[] {};
-        // Create a List from String Array elements
+
         final List<String> recordings_list = new ArrayList<String>(Arrays.asList(recordings));
-
-        // Create an ArrayAdapter from List
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, recordings_list);
-
-        // DataBind ListView with items from ArrayAdapter
         records_view.setAdapter(arrayAdapter);
 
-        Switch check_switch;
+        final Switch check_switch;
         check_switch = (Switch) rootView.findViewById(R.id.record_switch);
 
 
@@ -78,46 +75,59 @@ public class fragment_record extends Fragment {
                 Intent intent = new Intent(getActivity(),accelerometer.class);
                 if (isChecked) {
 
-                    Log.e("kahaa hai", "checked main hu");
-                    int gps_c = preferences.getInt("gps_check", -1);
-                    int acc_c = preferences.getInt("acc_check", -1);
-
-                    if (gps_c == 0 && acc_c == 0) {
-
+                    if ( preferences.getInt("incomplete",0) == 0)
+                    {
+                        check_switch.setChecked(false);
+//                        Toast.makeText(fragment_record.this, "Select atleast one sensor..." , Toast.LENGTH_LONG).show();
                     }
                     else {
 
-                        rrg = (RadioGroup) rootView.findViewById(R.id.record_rg);
-                        int selectedId = rrg.getCheckedRadioButtonId();
-                        rbt = (RadioButton) rootView.findViewById(selectedId);
-                        Log.e("radio", rbt.getText().toString());
-                        int g = preferences.getInt("gender_check", -1);
-                        String gc;
-                        if (g == 1) {
-                            gc = "Female";
+
+                        Log.e("kahaa hai", "checked main hu");
+                        int gps_c = preferences.getInt("gps_check", -1);
+                        int acc_c = preferences.getInt("acc_check", -1);
+
+                        if (gps_c == 0 && acc_c == 0) {
+
+                            check_switch.setChecked(false);
+//                            Toast.makeText(fragment_record.this, "Select atleast one sensor...", Toast.LENGTH_LONG).show();
+
                         } else {
-                            gc = "Male";
+
+                            rrg = (RadioGroup) rootView.findViewById(R.id.record_rg);
+                            int selectedId = rrg.getCheckedRadioButtonId();
+                            rbt = (RadioButton) rootView.findViewById(selectedId);
+                            Log.e("radio", rbt.getText().toString());
+                            int g = preferences.getInt("gender_check", -1);
+                            String gc;
+                            if (g == 1) {
+                                gc = "Female";
+                            } else {
+                                gc = "Male";
+                            }
+
+                            intent.putExtra("first", preferences.getString("First_name", ""));
+                            intent.putExtra("last", preferences.getString("Last_name", ""));
+                            intent.putExtra("mobile", preferences.getString("Mobile_no", ""));
+                            intent.putExtra("email", preferences.getString("E_mail", ""));
+                            intent.putExtra("gend", preferences.getString("gen", ""));
+                            intent.putExtra("age", preferences.getString("age_person", ""));
+                            intent.putExtra("label", rbt.getText().toString());
+                            intent.putExtra("acc_ch", acc_c);
+                            intent.putExtra("gps_ch", gps_c);
+                            intent.putExtra("path", ppp);
+                            intent.putExtra("time", format);
+
+                            getActivity().startService(intent);
+
+                            if (recordings_list.size() >= 5) {
+                                recordings_list.add(0, format);
+                                recordings_list.remove(recordings_list.size() - 1);
+                            } else {
+                                recordings_list.add(0, format);
+                            }
                         }
-
-                        intent.putExtra("first", preferences.getString("First_name", ""));
-                        intent.putExtra("last", preferences.getString("Last_name", ""));
-                        intent.putExtra("mobile", preferences.getString("Mobile_no", ""));
-                        intent.putExtra("email", preferences.getString("E_mail", ""));
-                        intent.putExtra("gend", preferences.getString("gen",""));
-                        intent.putExtra("age", preferences.getString("age_person", ""));
-                        intent.putExtra("label", rbt.getText().toString());
-                        intent.putExtra("acc_ch",acc_c);
-                        intent.putExtra("gps_ch",gps_c);
-
-                        getActivity().startService(intent);
-
-                        if (recordings_list.size() >= 5) {
-                            recordings_list.add(0, format);
-                            recordings_list.remove(recordings_list.size() - 1);
-                        } else {
-                            recordings_list.add(0, format);
                     }
-                }
                 }
                 else
                 {
